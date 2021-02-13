@@ -18,14 +18,16 @@ import os
 
 
 app = Flask(__name__, static_folder="static")
-FILE = '../wines.csv'
+FILE = 'clean_wines.csv'
 
 answer = ""
 
 
 @app.route("/search", methods=["POST"]) 
 def upvote():
-	send_msg = request.form["search"]
+	send_msg = request.form["wine_name"]
+
+
 	answer = str(send_msg)
 	print(answer)
 	return str(answer)

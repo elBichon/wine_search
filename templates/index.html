@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-  {% block title %} Comic Search  {% endblock %}
+  {% block title %} Wine Search  {% endblock %}
   {% block content %}
   <div class="main">
     <div class="home">
@@ -13,21 +13,163 @@
 
         <div class="row">
           <div class="eight columns offset-by-two">
-            <form action='/search' method="post">
-              <input type="text" name="search" placeholder="your search..." value="" class="wiki-search-input" id="wiki-search-input"/>
-              <select name="type" id="type">
-                <option value="title_search">Title</option>
-                <option value="plot_search">Plot</option>
-              </select> 
-              <input type="submit" value="Submit">
+            <form name="myForm" action='/search' method="post" class="p-3">
+              <div class="form-group">
+                <label for="seeAnotherField">Comment souhaitez-vous faire votre recherche ?</label>
+                <select class="form-control" id="seeAnotherField">
+                      <option value="none">----</option>
+                      <option value="label">Label</option>
+                      <option value="name">Par son nom, je sais quel vin je cherche</option>
+                      <option value="help">Je vais avoir besoin d'aide</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="otherFieldDiv">
+                <label for="otherField">Ok, envoyez une photo de l'étiquette de votre vin !</label>
+                <select class="form-control" id="otherField">
+                <br>
+                <input type="submit" value="Submit">
+              </div>
+
+              <div class="form-group" id="otherFieldDiv1">
+                <label for="otherField1">Bien sûr, quel vin recherchez-vous ?</label>
+                  <div class="autocomplete" style="width:300px;">
+                    <input id="myInput" type="text" name="wine_name" placeholder="Votre vin">
+                  </div>
+                  <br>
+                <input type="submit" value="Submit">
+              </div>
+
+              <div class="form-group" id="otherFieldDiv2">
+                <div>Pas de problèmes, je suis là pour ça</div>
+                  <label for="otherField2"></label>
+                  <div>une préférence pour la couleur ?</div>
+                    <select name="couleur" class="form-control" id="otherField">
+                      <option value = "no">Non</option>
+                      <option value = "rouge">Rouge</option>
+                      <option value = "rose">Rosé</option>
+                      <option value = "blanc">Blanc</option>
+                      <option value = "spiritueux">Spiritueux</option>
+                    </select>
+                 <div>une préférence pour le pays ?</div>
+                  <select name="pays" class="form-control" id="otherField">
+                    <option value = "no">Non</option>
+                    <option value = "liban">Liban</option>
+                    <option value = "afrique du sud">Afrique du sud</option>
+                    <option value = "etats-unis">Etats-unis</option>
+                    <option value = "argentine">Argentine</option>
+                    <option value = "japon">Japon</option>
+                    <option value = "chili">Chili</option>
+                    <option value = "inde">Inde</option>
+                    <option value = "nouvelle-zélande">Nouvelle-zélande</option>
+                    <option value = "france">France</option>
+                    <option value = "hongrie">Hongrie</option>
+                    <option value = "australie">Australie</option>
+                    <option value = "espagne">Espagne</option>
+                    <option value = "italie">Italie</option>
+                    <option value = "portugal">Portugal</option>
+                  </select>
+                <div>une préférence pour la région ?</div>
+                  <select name="region" class="form-control" id="otherField">
+                    <option value = "no">Non</option>
+                    <option value = "côtes du rhône villages">côtes du rhône villages</option>
+                    <option value = "valence">valence</option>
+                    <option value = "costières de nîmes">costières de nîmes</option>
+                    <option value = "igp gard">igp gard</option>
+                    <option value = "igp méditerranée">igp méditerranée</option>
+                    <option value = "maharashtra">maharashtra</option>
+                    <option value = "zahlé">zahlé</option>
+                    <option value = "ribera del duero">ribera del duero</option> 
+                    <option value = "toscane">toscane</option> 
+                    <option value = "tokaj">tokaj</option>
+                    <option value = "karnataka">karnataka</option>
+                    <option value = "campanie">campanie</option>
+                    <option value = "bottelary">bottelary</option>
+                    <option value = "piemont">piemont</option>
+                    <option value = "sicile">sicile</option>
+                    <option value = "beaumes de venise">beaumes de venise</option>
+                    <option value = "vallée du douro">vallée du douro</option>
+                    <option value = "champagne">champagne</option> 
+                    <option value = "marlborough">marlborough</option> 
+                    <option value = "bordeaux">bordeaux</option>
+                    <option value = "chignin bergeron">chignin bergeron</option>
+                    <option value = "les pouilles">les pouilles</option>
+                    <option value = "roussette de savoie">roussette de savoie</option>
+                    <option value = "castilla la mancha">castilla la mancha</option>
+                    <option value = "côte-rôtie">côte-rôtie</option> 
+                    <option value = "côtes de provence sainte victoire">côtes de provence sainte victoire</option>
+                    <option value = "bishop creek">bishop creek</option>
+                    <option value = "aop luberon">aop luberon</option> 
+                    <option value = "dolomites">dolomites</option>
+                    <option value = "bourgogne">bourgogne</option>
+                    <option value = "provence">provence</option> 
+                    <option value = "crozes-hermitage">crozes-hermitage</option> 
+                    <option value = "alsace">alsace</option> 
+                    <option value = "worcester">worcester</option> 
+                    <option value = "central valley (californie)">central valley (californie)</option> 
+                    <option value = "igp allobrogie">igp allobrogie</option> 
+                    <option value = "empordà">empordà</option>
+                    <option value = "châteauneuf du pape">châteauneuf du pape</option> 
+                    <option value = "bekaa">bekaa</option> 
+                    <option value = "roero superiore">roero superiore</option> 
+                    <option value = "lirac">lirac</option> 
+                    <option value = "côtes du rhône brezème">côtes du rhône brezème</option>
+                    <option value = "coastal">coastal</option> 
+                    <option value = "catalogne">catalogne</option> 
+                    <option value = "pouilles">pouilles</option> 
+                    <option value = "limousin">limousin</option> 
+                    <option value = "lake county californie">lake county californie</option> 
+                    <option value = "breedekloof">breedekloof</option> 
+                    <option value = "vallée centrale">vallée centrale</option> 
+                    <option value = "venetie">venetie</option> 
+                    <option value = "périgord">périgord</option> 
+                    <option value = "vin afrique du sud">vin afrique du sud</option> 
+                    <option value = "languedoc-roussillon">languedoc-roussillon</option> 
+                    <option value = "jura">jura</option>
+                    <option value = "lombardie">lombardie</option> 
+                    <option value = "extremadura">extremadura</option>
+                    <option value = "côteaux du lyonnais">côteaux du lyonnais</option>
+                    <option value = "sud-ouest">sud-ouest</option>
+                    <option value = "central otaga">central otaga</option> 
+                    <option value = "doc vittoria">doc vittoria</option> 
+                    <option value = "igp vin des allobroges">igp vin des allobroges</option>
+                    <option value = "ventoux">ventoux</option> 
+                    <option value = "rioja">rioja</option> 
+                    <option value = "côtes de provence">côtes de provence</option> 
+                    <option value = "mendoza">mendoza</option> 
+                    <option value = "abruzzes">abruzzes</option> 
+                    <option value = "corse">corse</option> 
+                    <option value = "igp alpilles">igp alpilles</option>
+                    <option value = "coteaux d'aix en provence">coteaux d'aix en provence</option>
+                    <option value = "vin de savoie">vin de savoie</option> 
+                    <option value = "swartland">swartland</option> 
+                    <option value = "arbin">arbin</option> 
+                    <option value = "paarl">paarl</option> 
+                    <option value = "rhône">rhône</option> 
+                    <option value = "côtes du rhône">côtes du rhône</option> 
+                    <option value = "beaujolais">beaujolais</option>
+                    <option value = "stellenbosch">stellenbosch</option> 
+                    <option value = "loire">loire</option> 
+                  </select>
+                  <br>
+                  <div>
+                    <label for="want">Je veux un vin qui: </label>
+                    <input type="text" id="want" name="want"><br>
+                    <label for="nowant">Je ne veux pas: </label>
+                    <input type="text" id="nowant" name="nowant"><br>
+                  </div>
+                  <input type="submit" value="Submit">
+              </div>
             </form>
           </div>
         </div>
       </div>
     </div>
-    <ul>
-    <li id="result"></li>
-  </ul>
+
+    <ul><li id="result"></li></ul>
 </body>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/complete.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/choice.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/spa.js') }}"></script>
 </html>
 {% endblock %}
