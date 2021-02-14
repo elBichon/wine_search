@@ -25,17 +25,32 @@ answer = ""
 
 @app.route("/search", methods=["POST"]) 
 def upvote():
-	send_msg = request.form["wine_name"]
-
-
-	answer = str(send_msg)
-	print(answer)
-	return str(answer)
-
+	try:
+		df = utils.read_data(FILE)
+		if len(request.form["search_type"]) > 0 and isinstance(request.form["search_type"], str) == True and str(request.form["search_type"]) in ["label_choice", "name_choice", "research_choice"]:
+			search_type = request.form["search_type"]
+			if search_type == "label_choice":
+				send_msg = request.form["wine_name"]
+				answer = str(send_msg)
+			elif search_type == "name_choice":
+				answer = df.loc[df['name'] == str(request.form["wine_name"])]
+				answer = answer[['name', 'image', 'pays','region', 'appelation', 'domaine', 'millesime', 'couleur','description']].head(10)
+			elif search_type == "research_choice":
+				couleur = str(request.form["couleur"])
+				pays = str(request.form["pays"])
+				answer = utils.generate_research_choice(df, couleur, pays)
+			else:
+				answer = False
+			return utils.generate_answer(answer)
+		else:
+			return False
+	except:
+		return False
 
 @app.route("/")
 def index():
 	return render_template("index.html")
+
 
 @app.errorhandler(404)
 def page_not_found(e):
